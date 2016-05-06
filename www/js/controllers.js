@@ -21,8 +21,33 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
+.controller('AccountCtrl', function($scope, Auth) {
+
+  $scope.login = function() {
+    Auth.$authWithOAuthRedirect("facebook").then(function(authData) {
+      // User successfully logged in
+      console.log(authData);
+    }).catch(function(error) {
+      if (error.code === "TRANSPORT_UNAVAILABLE") {
+        Auth.$authWithOAuthPopup("facebook").then(function(authData) {
+          // User successfully logged in. We can log to the console
+          // since we’re using a popup here
+          console.log(authData);
+        });
+      } else {
+        // Another error occurred
+        console.log(error);
+      }
+    });
   };
+
+  Auth.$onAuth(function(authData) {
+    if (authData === null) {
+      console.log("Not logged in yet");
+    } else {
+      console.log("Logged in as", authData.uid);
+    }
+    $scope.authData = authData; // This will display the user's name in our view
+  });
+
 });

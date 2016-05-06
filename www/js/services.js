@@ -1,5 +1,10 @@
 angular.module('starter.services', [])
 
+.factory('Auth', function($firebaseAuth) {
+  var usersRef = new Firebase("https//gub.firebaseio.com/users");
+  return $firebaseAuth(usersRef);
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
