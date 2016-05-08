@@ -77,9 +77,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'AccountCtrl'
       }
     }
+  })
+  .state('map', {
+    url: '/map',
+    templateUrl: 'templates/map.html',
+    controller: 'MapCtrl'
   });
-
+$urlRouterProvider.otherwise('/map');
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
 
 });
