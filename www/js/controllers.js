@@ -1,6 +1,24 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope) {
+
+  //initialize the global variables for this view
+  $scope.number = 0;
+  $scope.post = {};
+  $scope.match_options = [["Buy", "Sell"], ["Rent", "Lease"], ["Find", "Give"], ["Work", "Hire"], ["Do", "Task"], ["Join", "Recruit"], ["Meet", "Meet"]];
+
+
+  getData();
+
+  function getData() {
+    var ref = new Firebase('https://gub.firebaseio.com/');
+    ref.on("value", function(snapshot) {
+      $scope.number = snapshot.val();
+    }, function (errorObject) {});
+  }
+
+
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
