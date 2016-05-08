@@ -6,7 +6,7 @@ angular.module('starter.controllers', [])
   $scope.number = 0;
   $scope.post = {};
   $scope.match_options = [["Buy", "Sell"], ["Rent", "Lease"], ["Find", "Give"], ["Work", "Hire"], ["Do", "Task"], ["Join", "Recruit"], ["Meet", "Meet"]];
-
+  $scope.match_toggles = new Array(len).fill(false);
 
   getData();
 
@@ -15,6 +15,10 @@ angular.module('starter.controllers', [])
     ref.on("value", function(snapshot) {
       $scope.number = snapshot.val();
     }, function (errorObject) {});
+  }
+
+  function ToggleMatchOption(index) {
+    
   }
 
 

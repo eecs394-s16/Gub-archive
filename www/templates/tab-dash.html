@@ -15,7 +15,7 @@
       <div class="input-label"> Category</div>
         <select ng-model="post.category">
           <option>Blue</option>
-          <option selected>Green</option>
+          <option selected>Yellow</option>
           <option>Red</option>
         </select>
       </label>
@@ -33,7 +33,7 @@
         <div ng-repeat="option in match_options">
           {{option[0]}}
           <label class="toggle">
-            <input type="checkbox" ng-value="getValue(option)">
+            <input type="checkbox" ng-value="match_toggles[$index]" ng-click="ToggleMatchOption($index)">
             <div class="track"> <div class="handle"></div></div>
           </label>
           {{option[1]}}
